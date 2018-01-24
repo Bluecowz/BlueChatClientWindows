@@ -7,7 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer x:Name="Messages" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+            <ListView x:Name="MessageList" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+        </ScrollViewer>
+        <TextBox x:Name="MessageBody" MinHeight="80" TextWrapping="Wrap" Margin="20" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Above="SendButton"/>
+        <Button x:Name="SendButton" Click="SendButton_Click" Content="Send" FontSize="20" Margin="20" Height="60" Width="200" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
+        <Button x:Name="CloseButton" Click="CloseButton_Click" Content="Disconnect" FontSize="20" Margin="20" Height="60" Width="200" RelativePanel.RightOf="SendButton" RelativePanel.AlignBottomWithPanel="True"/>
+    </RelativePanel>
 </Page>

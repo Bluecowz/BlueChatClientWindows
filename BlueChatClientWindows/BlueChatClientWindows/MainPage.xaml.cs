@@ -22,9 +22,44 @@ namespace BlueChatClientWindows
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Classes.ClientServices client;
+
+        public Boolean Connected
+        {
+            get { return client == null ? false : client.Connected; }
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
+            client = new Classes.ClientServices();
+            client.StartClient();
+        }
+
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            string message = MessageBody.Text;
+            MessageBody.Text = String.Empty;
+
+            if (!Connected)
+            {
+                MessageList.Items.Add("Not Connected.");
+                return;
+            }
+                
+
+            string response = await client.SendMessage(message);
+
+
+            string messageOut = String.Format("{0}: {1}", client.Username, response);
+
+            MessageList.Items.Add(messageOut);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            client.CloseClient();
+            App.Current.Exit(); //This is traditionaly bad practice. Whatever. 
         }
     }
 }
