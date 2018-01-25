@@ -12,7 +12,7 @@ namespace BlueChatClientWindows.Classes
     class ClientServices
     {
         //Change this to whatever server you are trying to connect to
-        private string ServerIP = "XXX.XXX.XXX.XXX";
+        private string ServerIP = "127.0.0.1";
         private string Port = "10000";
         private StreamSocket streamSocket;
         private Stream outputStream;
